@@ -1,0 +1,733 @@
+/* Reglas generales a todas las páginas ---------------------------------------------------------------- */
+
+/* Declaración de variables para los colores, en el root para que esté accesible en todo el fichero */
+:root{
+	--rojo: #d55f38;
+	--amarillo: #fbd253;
+	--negro: #3d3e3f;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+/* Body, tipografía*/
+body{
+	font-family: 'Roboto Condensed', sans-serif;
+}
+body p{
+	color: var(--negro);
+}
+/* Header: color de fondo, padding, y display: flex para colocar los elementos internos */
+header{
+	background-color: rgba(255,255,255,0.8);
+	padding: 20px;
+	display:flex;
+	justify-content: space-between;
+	align-items:center;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+}
+/* Tamaño del título dentro del header */
+header h1{
+	font-size:2.5em;
+	margin-left: 100px;
+}
+/* Enlaces dentro del header quitar estilo por defecto y color */
+header a{
+	text-decoration: none;
+	color: var(--rojo);
+}
+header nav{
+	margin-right: 100px;
+}
+
+/*Menú de navegación-----------------------------------------------------------------------------------*/
+
+/* Lista dentro del menú */
+nav ul{
+	display:flex;
+	list-style: none;
+}
+/* Margen derecho de los items del menú (separarlos entre sí), menos el último. */
+nav li:not(:last-child){
+	margin-right:20px;
+}
+nav li:last-child{
+	margin-right:40px;
+}
+/* Tamaño de los apartados del menú y position: relative para ubicar las líneas inferiores */
+nav li a{
+	font-size: 1.5em;
+	position: relative;
+}
+/* Creamos una línea vacía después de los items del menú y la animamos, posicion absolute para colocarlos respecto a los items */
+nav li a::after{
+	content: "";
+	position: absolute;
+	width: 100%;
+	display: block;
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	background-color: var(--rojo);
+	transform-origin: bottom left;
+	transform: scaleX(0);
+	transition: transform 0.3s ease;
+}
+/* Animación de la línea cuando pasamos el ratón por encima */
+nav li a:hover::after{
+	transform: scaleX(1);
+}
+.abrirMenu, .cerrarMenu{
+	display: none;
+}
+
+/* Página LGSM ---------------------------------------------------------------------------------------- */
+
+/* Alto, ancho y posición relativa de la primera sección */
+.cabecera{
+	height: 100vh;
+	position: relative;
+}
+/* Tamaño y display de los títulos dentro de la primera sección */
+.cabecera h2{
+	font-size: 10em;
+	display: inline;
+	color: var(--negro);
+}
+/* Colocación del primer texto, display absolute para colocarlo respecto a su primer ancestro relativo, la .cabecera */
+.cabecera :nth-child(1){
+	position: absolute;
+	top: 150px;
+	left: 50px;
+}
+/* Colocación del segundo texto de la cabecera*/
+.cabecera :nth-child(2){
+	position: absolute;
+	top: 200px;
+	left: 800px;
+}
+/* Colocación del tercer texto de la cabecera*/
+.cabecera :nth-child(3){
+	position: absolute;
+	top: 350px;
+	left: 200px;
+	color: var(--rojo);
+}
+/* Colocación del cuarto texto de la cabecera*/
+.cabecera :nth-child(4){
+	position: absolute;
+	top: 500px;
+	left: 700px;
+}
+/* Colocación y tamaño de la imagen de la cabecera*/
+.cabecera :nth-child(5){
+	position: absolute;
+	top: 480px;
+	left: 75px;
+	z-index: -1;
+	width: 40%;
+}
+/* Márgenes y posición de los elementos de las secciones con información */
+.info, .info2{
+	margin: 0 100px;
+	display: flex;
+	align-items: center;
+}
+/* Márgenes y padding de los divs dentro de las secciones de info */
+.info div, .info2 div{
+	margin: 30px 0;
+	padding: 60px;
+}
+/* Márgenes y tamaño de los párrafos dentro de las secciones de info */
+.info div p, .info2 div p{
+	margin: 20px 0;
+	font-size: 1.1em;
+}
+/* Tamaño del texto de la parte de texto de las secciones de info */
+.info :nth-child(1), .info2 :nth-child(2){
+	width: 45%;
+}
+/* Tamaño de los párrafos de la parte de texto de las secciones de info */
+.info :nth-child(1) p, .info2 :nth-child(2) p{
+	width: 100%;
+}
+/* Posición y tamaño de los div de las imágenes de las secciones de info */
+.info :nth-child(2), .info :nth-child(1){
+	width: 55%;
+	display: flex;
+	flex-direction: column;
+}
+/* Tamaño y estilo de fuente de los pies de foto de las secciones de info */
+.info :nth-child(2) p, .info2 :nth-child(1) p{
+	width: 100%;
+	font-style: italic;
+}
+/* Tamaño de la imagen en la segunda sección de info  */
+.info2 :nth-child(1) p{
+	width: 60%;
+}
+/* Tamaño de la imagen y el parrafo dentro del div de la primera sección de info */
+.info :nth-child(2) img, .info :nth-child(2) p{
+	width: 100%;
+}
+/* Tamaño y márgenes del contenedor de la galería */
+.cont_galeria{
+	width: 100vw;
+	margin: 100px 0;
+}
+/* Grid, márgenes y tamaño de la galería */
+.galeria{
+	width:200px;
+	display: grid;
+	grid-template-columns:repeat(4,100%);
+	gap: 10px;
+	margin: 0 calc(calc(100% - 830px) / 2);
+}
+/* Tamaño de las imágenes de la galería y que ocupen todo el espacio, sin perder la proporción */
+.galeria a img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+/* Filtro blanco y negro para las imágenes y transición para que se pongan a color */
+.galeria img{
+	filter:grayscale(100%);
+	transition:filter 0.9s;
+}
+/* Hover de las imágenes para que se pongan a color */
+.galeria a:hover img{
+	filter:grayscale(0);
+}
+/* Posición, tamaño y color del modal */
+.modal{
+	display:none;
+	align-items:center;
+	justify-content: space-between;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0.6);
+}
+/* Clase visible, para cambiar el display de la modal cuando se abre */
+.visible{
+	display:flex;
+}
+/* Tamaño de las imágenes de la galería abierta */
+.modal img{
+	display:block;
+	width:600px;
+}
+/* Tamaño, posición y estilo de las flechas de la galería */
+.modal a{
+	display:block;
+	color:white;
+	font-size:5em;
+	font-weight: 300;
+	text-decoration:none;
+	margin:0 20px;
+}
+/* Página película ------------------------------------------------------------------------------------ */
+/*Tamaño de la cabecera de la página de película*/
+.cabecera_pelicula{
+	padding: 100px;
+}
+/* Color y tamaño de los títulos de la página "película" */
+.cabecera_pelicula h2{
+	color: var(--negro);
+	display: inline-block;
+	font-size: 8em;
+}
+/*Color y tamaño del título destacado de la página "película"*/
+.cabecera_pelicula :nth-child(3){
+	color: var(--rojo);
+}
+/*Color y tamaño del subtítulo de la página "película"*/
+.cabecera_pelicula h3{
+	color: var(--negro);
+	font-size: 1.8em;
+	width: 40%;
+	font-weight: 600;
+	margin: 20px 0;
+}
+/* Display flex para colocar los elementos internos, padding y margin de la seccion pelicula */
+.pelicula{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 0 50px;
+	margin: 50px 0;
+}
+/* Tamaño y márgenes de las imágenes de la sección pelicula */
+.pelicula img{
+	width: 500px;
+	margin: 10px 10px;
+}
+/* Display flex para colocar los elementos internos y padding de la ficha técnica */
+.ficha_tecnica{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+/* Color, tamaño y márgenes del título de ficha técnica */
+.ficha_tecnica h3{
+	color: var(--rojo);
+	font-size: 4em;
+	margin: 20px 60px;
+	width: 100%;
+}
+/* Quitar los puntos, tamaño, margen y padding de la lista con la ficha técnica */
+.ficha_tecnica ul{
+	list-style: none;
+	font-size: 1.5em;
+	margin: 0 60px;
+	width: 30%;
+}
+/* Destacado de los puestos de la ficha técnica */
+.ficha_tecnica ul li span{
+	font-weight: 700;
+}
+/* Tamaño y padding de la imagen de ficha técnica */
+.ficha_tecnica img{
+	width: 50%;
+	margin: 20px 0;
+}
+/* Padding del contenedor principal con los personajes */
+.personajes{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+/* Tamaño, color y margen del título "Personajes" */
+.personajes h3{
+	font-size: 4em;
+	color: var(--rojo);
+	margin: 20px;
+	margin-left: 0;
+	width: 90%;
+}
+/* Tamaño, color y márgenes del contenedor de cada personaje */
+.jonathan, .mark, .sian, .hefina{
+	width: 80%;
+	background-color: var(--rojo);
+	padding: 50px;
+	display: flex;
+	margin: 30px 0;
+}
+/* Tamaño del nombre de cada personaje */
+.jonathan h3, .mark h3, .sian h3, .hefina h3{
+	font-size: 3em;
+	color: white;
+}
+/* Color de los textos de cada personaje */
+.jonathan .datos, .mark .datos, .sian .datos, .hefina .datos{
+	color: white;
+}
+/* Tamaño, margen y posición de las imágenes de cada personaje */
+.jonathan img, .mark img, .sian img, .hefina img{
+	margin: 10px;
+	width: 400px;
+	align-self: flex-end;
+}
+/* Tamaño y margen de los textos de cada personaje */
+.jonathan .datos p, .mark .datos p, .sian .datos p, .hefina p{
+	width: 100%;
+	margin: 10px 0;
+	color: white;
+
+}
+/* Página inicio -------------------------------------------------------------------------------------- */
+/* Imagen de fondo y su colocación, color por si falla la imagen, altura y display flex de la cabecera de la página de inicio */
+.cabecera_inicio{
+	background-image: url(../img/pelicula01.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-color: var(--rojo);
+	height: 100vh;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+}
+/* Tamaño, color y margen del título del inicio */
+.cabecera_inicio h1{
+	font-size: 15em;
+	color: white;
+	margin-left: 100px;
+}
+/* Margen y display flex de los premios */
+.premios{
+	margin: 100px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+/* Altura y margen de los logos de los premios */
+.premios img{
+	height: 100px;
+	margin: 10px 0;
+}
+/* Ajustes del logo de bifa */
+.premios .bifa{
+	height: 130px;
+	margin-top: 0px;
+}
+/* Ajustes del logo de queer palm */
+.premios .queer-palm{
+	margin-bottom: 35px;
+}
+/* Display flex para colocar los logos y textos de los premios */
+.premios div{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+/* Ancho, color, y tamaño de texto de los premios */
+.premios p{
+	width: 60%;
+	text-align: center;
+	color: var(--rojo);
+	font-size: 1.2em;
+}
+/* Tamaño, alineación y color de la opinión en el inicio */
+.opinion h3{
+	font-size: 2em;
+	text-align: center;
+	color: var(--negro);
+}
+/* Footer --------------------------------------------------------------------------------------------- */
+/* Reglas generales para el footer, color de fondo, altura, margen y padding */
+footer{
+	background-color: var(--negro);
+	height: 100px;
+	margin-top: 100px;
+	padding-top: 25px;
+}
+/* Color, alineación, margen y tamaño de fuente de los textos del footer */
+footer p{
+	color: white;
+	text-align: center;
+	margin: 5px 0;
+	font-size: 1em;
+}
+/* Responsive ----------------------------------------------------------------------------------------- */
+
+/* Para monitores pequeños, a partir de 1300px */
+@media screen and (max-width:1300px){
+	/*Responsive LGSM --------------------------------------------------------------------------------*/
+	/* Tamaño de los títulos dentro de la primera sección */
+	.cabecera h2{
+		font-size: 7em;
+	}
+	/* Colocación del segundo texto de la cabecera*/
+	.cabecera :nth-child(2){
+		left: 600px;
+	}
+	/* Colocación del cuarto texto de la cabecera*/
+	.cabecera :nth-child(4){
+		top: 500px;
+		left: 550px;
+	}
+	/* Quitamos el flex a info, para que los textos y las imágenes vayan una detrás de otra y no al lado */
+	.info, .info2{
+		display: block;
+	}
+	/* Ajustamos el tamaño de los textos e imagenes de las secciones de info */
+	.info :nth-child(1), .info :nth-child(2),.info2 :nth-child(1), .info2 :nth-child(2){
+		width: 90%;
+	}
+	/* Ajustamos el margen y padding de las secciones de info */
+	.info div, .info2 div{
+		margin: 0px 0;
+		padding: 20px;
+	}
+	/*Responsive película -----------------------------------------------------------------------------*/
+	
+	/*Ajustamos el padding de la cabecera de la página de película*/
+	.cabecera_pelicula{
+		padding: 60px;
+		padding-top: 150px;
+	}
+	/* Ajuste de tamaño de los títulos de la página "película" */
+	.cabecera_pelicula h2{
+		font-size: 7em;
+	}
+	/*Ajuste de tamaño del subtítulo de la página "película"*/
+	.cabecera_pelicula h3{
+		font-size: 1.3em;
+		width: 60%;
+	}
+	/* Quitar los puntos, tamaño, margen y padding de la lista con la ficha técnica */
+	.ficha_tecnica ul{
+		font-size: 1.2em;
+	}
+	/* Padding del contenedor principal con los personajes */
+	.personajes{
+		flex-wrap: wrap;
+	}
+	/* Tamaño, color y márgenes del contenedor de cada personaje */
+	.jonathan, .mark, .sian, .hefina{
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+}
+
+/* Para tablets, a partir de 900px */
+@media screen and (max-width:900px){
+
+	/*Responsive header --------------------------------------------------------------------------------*/
+	header{
+		margin-right: 200px;
+	}
+	header h1{
+		margin-left: 50px;
+	}
+	/* Menú de navegación, hacer que se esconda hacia arriba con la posición superior en -100, para luego animarlo */
+	nav{
+		position:fixed;
+		top:-100vh;
+		left:0;
+		padding:0px;
+		width: 100%;
+		height: 100vh;
+		background-color:var(--rojo);
+		transition:top 0.7s;
+	}
+	/* Clase que permite poner al nav en la pantalla de nuevo, con la posición superior en 0 */
+	.desplegado{
+		top:0;
+	}
+	/* lista dentro del menú */
+	nav ul{
+		display:block;
+		padding: 40px;
+	}
+	/* elementos dentro de la lista, tamaño y peso de la fuente */
+	nav li{
+		font-size:3em;
+		font-weight: 700;
+		color:white;
+	}
+	/* espacio entre los elementos de la lista */
+	nav li:not(:first-child){
+		margin-top:20px;
+	}
+	/* color de los enlaces dentro del menú*/
+	nav a{
+		color:white;
+	}
+	/* Clase para la equis que cierra el menú. Que esté visible, posición, tamaño y color */
+	.cerrarMenu{
+		display:block;
+		position:absolute;
+		top:20px;
+		right:50px;
+		font-size:3em;
+		text-decoration:none;
+	}
+	/* Clase para el menú hamburguesa. Que esté visible, tamaño y padding */
+	.abrirMenu{
+		display:block;
+		width:30px;
+		padding:5px 5px 0;
+		margin-right: 100px;
+	}
+	/* Clase para las rayas del menú hamburguesa, que esté visible, tamaño, márgenes y color */
+	.abrirMenu span{
+		display:block;
+		height:4px;
+		background-color:var(--rojo);
+		margin-bottom:5px;
+	}
+	/*Responsive LGSM --------------------------------------------------------------------------------*/
+	/* Tamaño de los títulos dentro de la primera sección */
+	.cabecera h2{
+		font-size: 6em;
+	}
+	/* Cambio de los textos de la cabecera a static para el diseño en responsive */
+	.cabecera :nth-child(1), .cabecera :nth-child(2), .cabecera :nth-child(3), .cabecera :nth-child(4){
+		position: static;
+	}
+	/* Ajuste de display, altura y padding de la cabecera */
+	.cabecera{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 150px 50px;
+		height: auto;
+		padding-bottom: 50px;
+	}
+	/* Quitamos la imagen de la cabecera */
+	.cabecera :nth-child(5){
+		display: none;
+	}
+	/* Grid, márgenes y tamaño de la galería */
+	.galeria{
+		width:230px;
+		grid-template-columns:repeat(3,100%);
+		margin: 0 30px;
+	}
+	/* Tamaño y márgenes del contenedor de la galería */
+	.cont_galeria{
+		margin: 100px calc(calc(100% - 710px) / 2);
+
+	}
+	/*Responsive película -----------------------------------------------------------------------------*/
+
+	/*Ajustamos el padding de la cabecera de la página de película*/
+	.cabecera_pelicula{
+		padding: 40px;
+		padding-top: 100px;
+	}
+	/* Ajuste de tamaño de los títulos de la página "película" */
+	.cabecera_pelicula h2{
+		font-size: 6em;
+	}
+	/*Ajuste de tamaño del subtítulo de la página "película"*/
+	.cabecera_pelicula h3{
+		font-size: 1.3em;
+		width: 60%;
+	}
+	/* Ajustamos el margen de la lista con la ficha técnica */
+	.ficha_tecnica ul{
+		margin: 0 30px;
+		font-size: 1em;
+	}
+	/*Responsive página de inicio ---------------------------------------------------------------------*/
+	
+	/* Tamaño, color y margen del título del inicio */
+	.cabecera_inicio h1{
+		font-size: 10em;
+		margin-left: 50px;
+	}
+
+}
+
+@media screen and (max-width:700px){
+
+	/*Responsive LGSM --------------------------------------------------------------------------------*/
+	.galeria{
+		width:230px;
+		grid-template-columns:repeat(2,100%);
+	}
+	/* Tamaño y márgenes del contenedor de la galería */
+	.cont_galeria{
+		margin: 100px calc(calc(100% - 470px) / 2);
+
+	}
+	/*Responsive película -----------------------------------------------------------------------------*/
+	/*Ajustamos el padding de la cabecera de la página de película*/
+	.cabecera_pelicula{
+		padding: 40px;
+		padding-top: 100px;
+	}
+	/* Ajuste de tamaño de los títulos de la página "película" */
+	.cabecera_pelicula h2{
+		font-size: 5em;
+	}
+	/*Ajuste de tamaño del subtítulo de la página "película"*/
+	.cabecera_pelicula h3{
+		width: 80%;
+	}
+	/* Ajustamos el margen de la lista con la ficha técnica */
+	.ficha_tecnica ul{
+		width: 80%;
+	}
+	/* Ajustamos el margen de la lista con la ficha técnica */
+	.ficha_tecnica img{
+		width: 80%;
+	}
+}
+
+/* Para móviles, menos de 600px */
+@media screen and (max-width:600px){
+
+	/* elementos dentro de la lista del menú, tamaño y peso de la fuente */
+	nav li{
+		font-size: 2em;
+	}
+
+	/*Responsive LGSM --------------------------------------------------------------------------------*/
+	
+	/* Ajustamos el tamaño de los textos e imagenes de las secciones de info */
+	.info :nth-child(1), .info :nth-child(2),.info2 :nth-child(1), .info2 :nth-child(2){
+		width: 100%;
+	}
+	.galeria{
+		width:400px;
+		grid-template-columns:repeat(1,100%);
+	}
+	/* Tamaño y márgenes del contenedor de la galería */
+	.cont_galeria{
+		margin: 100px calc(calc(100% - 400px) / 2);
+
+	}
+	/* Ajustamos el tamaño de los textos e imagenes de las secciones de info */
+	.info :nth-child(1), .info :nth-child(2),.info2 :nth-child(1), .info2 :nth-child(2){
+		width: 100%;
+	}
+	/* Ajustamos el margen y padding de las secciones de info */
+	.info div, .info2 div{
+		margin: 0px 0;
+		padding: 20px;
+		width: 400px;
+	}
+	.info, .info2{
+		width: 100%;
+		margin: 15px;
+	}
+	/*Responsive película -----------------------------------------------------------------------------*/
+	.cabecera_pelicula{
+		padding: 20px;
+		padding-top: 100px;
+	}
+	/* Ajuste de tamaño de los títulos de la página "película" */
+	.cabecera_pelicula h2{
+		font-size: 4em;
+	}
+	/*Ajuste de tamaño del subtítulo de la página "película"*/
+	.cabecera_pelicula h3{
+		font-size: 1.3em;
+		width: 80%;
+	}
+	/* Ajuste tamaño de las imágenes de cada personaje */
+	.jonathan img, .mark img, .sian img, .hefina img{
+		width: 300px;
+	}
+	/* Tamaño de las imágenes de la sección pelicula */
+	.pelicula img{
+		width: 300px;
+	}
+	/*Responsive página de inicio ---------------------------------------------------------------------*/
+	
+	/* Tamaño, color y margen del título del inicio */
+	.cabecera_inicio h1{
+		font-size: 5em;
+		margin-left: 30px;
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
